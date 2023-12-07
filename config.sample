@@ -1,0 +1,11 @@
+$wan eth0
+$internet 123.123.234.234
+$dns 1.1.1.1
+
+#OP #PRI #PROTO #LOCAL #REMOTE  #ACT
++ 999 tcp * 192.168.1.1:* ACCEPT
++ 1000 udp $wan:* * REJECT
+- 0 tcp 192.168.1.5:80 *:65535 DROP
+- 0 tcp 192.168.1.5:80 192.168.1.6:65535 DROP
++ 1 tcp $internet:443 * ALLOW
++ 1 udp * $dns:53 ACCEPT
